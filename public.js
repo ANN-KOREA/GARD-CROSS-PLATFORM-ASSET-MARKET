@@ -1,1 +1,11 @@
-'use strict';let rows=[];function draw(){let q=$('q').value.toLowerCase();let a=rows.filter(r=>(r.title+' '+r.summary).toLowerCase().includes(q));$('rows').replaceChildren(...a.map(r=>{let d=el('article');d.append(el('h3',r.title),el('p',r.summary),el('small','공개 ID: '+r.id));return d}));$('message').textContent=rows.length?`공개 ${rows.length}건 / 검색 ${a.length}건`:'현재 승인된 공개 자산이 없습니다.'}$('q').oninput=draw;fetch('data/public.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json()}).then(d=>{if(d.schema!=='gard.public.v1'||!Array.isArray(d.assets)||!d.assets.every(a=>['id','title','summary'].every(k=>typeof a[k]==='string')))throw Error();rows=d.assets;draw()}).catch(()=>$('message').textContent='공개 원장 로드 실패. HTTPS 배포 주소에서 다시 접속하세요.');
+{
+  "schema": "gard.public.v1",
+  "generated_at": "2026-11-24T12:35:51.400Z",
+  "assets": [
+    {
+      "id": "75c1c426-1ed4-448d-8bc9-4756e1e98a55",
+      "title": "SPC 자문 프로젝트 성과 보고서",
+      "summary": "test....."
+    }
+  ]
+}
